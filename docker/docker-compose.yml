@@ -1,0 +1,17 @@
+version: '3.2'
+
+services:
+  kitsch-frontend:
+    build:
+      context: ./$PATH_KITSCH_FRONTEND/kitsch-frontend
+      dockerfile: ./Dockerfile.dev
+    volumes:
+      - ./$PATH_KITSCH_FRONTEND/../:/usr/app/src
+    expose:
+      - "8080"
+    labels:
+        - "traefik.backend=kitsch-frontend"
+        - "traefik.port=8080"
+        - "traefik.frontend.rule=HostRegexp:{domain:[a-z0-9.]+}"
+        - "traefik.frontend.priority=10"
+        - "traefik.enable=true"
