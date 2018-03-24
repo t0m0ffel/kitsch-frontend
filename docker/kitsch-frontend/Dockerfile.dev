@@ -1,0 +1,13 @@
+FROM node:alpine
+
+RUN mkdir -p /usr/app/src \
+        && mkdir -p /usr/app/scripts
+
+WORKDIR /usr/app/src
+
+ADD ./bootstrap.sh /usr/app/scripts/bootstrap.sh
+
+CMD sh /usr/app/scripts/bootstrap.sh && \
+  npm run dev
+
+EXPOSE 8081
