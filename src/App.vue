@@ -2,7 +2,12 @@
   <div>
     <div id="app">
       <v-app id="inspire">
-
+        <router-view name="header"/>
+        <v-content>
+          <v-container fluid>
+            <router-view/>
+          </v-container>
+        </v-content>
       <v-footer color="indigo" app>
         <span class="white--text">&copy; 2017</span>
       </v-footer>
@@ -11,11 +16,11 @@
   </div>
 </template>
 <script>
-import HeaderComponent from '@/components/HeaderComponent'
+import LayoutComponent from '@/components/LayoutComponent'
 
 export default {
   components: {
-    HeaderComponent
+    LayoutComponent
   },
   name: 'App'
 }

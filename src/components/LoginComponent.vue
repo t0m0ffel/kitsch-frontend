@@ -1,5 +1,5 @@
 <template>
-    <v-toolbar-items class="hidden-sm-and-down">
+  <v-toolbar-items class="hidden-sm-and-down">
     <v-btn flat @click.stop="loginDialog = true; toggle_login_register = 0">Login</v-btn>
     <v-btn flat @click.stop="loginDialog = true; toggle_login_register = 1">Register</v-btn>
     <v-dialog v-model="loginDialog" min-width="400px" max-width="600px">
@@ -50,15 +50,18 @@
             />
           </v-form>
         </v-card-text>
+        <v-alert type="error" :value="error">
+          {{error}}
+        </v-alert>
         <v-card-actions>
           <v-layout row justify-center>
             <v-btn color="primary" @click.stop="login">Submit</v-btn>
-            <v-btn flat @click.stop="loginDialog=false">Close</v-btn>
+            <v-btn flat @click.stop="loginDialog=false; error=null">Close</v-btn>
           </v-layout>
         </v-card-actions>
       </v-card>
     </v-dialog>
-    </v-toolbar-items>
+  </v-toolbar-items>
 </template>
 
 <script>
@@ -71,13 +74,19 @@ export default {
     toggle_login_register: 0,
     checkbox: false,
     email: null,
-    password: null
+    password: null,
+    error: null
   }),
 
   methods: {
-    login () {
-      this.loginDialog = false
-      Authentication.login(this.email, this.password, '/secured')
+    async login () {
+      try {
+        await Authentication.login(this.email, this.password, '/secured')
+      } catch ({response}) {
+        console.log(response.data)
+        console.log(response.data.msg)
+        this.error = response.data.msg
+      }
     }
 
   }
