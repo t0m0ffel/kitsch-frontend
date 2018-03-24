@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import HeaderComponent from '@/components/HeaderComponent'
+import LoginComponent from '@/components/LoginComponent'
 import Secured from '@/components/SecuredComponent'
 import auth from '@/services/authentication'
+import DefaultHeaderComponent from '@/components/DefaultHeaderComponent'
 
 Vue.use(Router)
 
@@ -12,16 +13,13 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      components: {default: HelloWorld, header: HeaderComponent},
-      props: {
-        default: false
-      }
+      components: {default: HelloWorld, headerContent: LoginComponent}
     },
 
     {
       path: '/secured',
       name: 'secured',
-      component: Secured,
+      components: {default: Secured, headerContent: DefaultHeaderComponent},
       meta: {requiresAuth: true}
     }
   ]

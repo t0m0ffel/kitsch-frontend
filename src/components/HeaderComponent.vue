@@ -1,8 +1,6 @@
 <template>
   <div>
-    <v-navigation-drawer fixed
-                         v-model="drawer"
-                         app>
+    <v-navigation-drawer fixed v-model="drawer" app>
       <v-list dense>
         <v-list-tile @click="1" :to="'/'">
           <v-list-tile-action>
@@ -28,7 +26,7 @@
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title :to="'/'">Application</v-toolbar-title>
       <v-spacer></v-spacer>
-      <login-component v-if="!loggedIn"/>
+      <login-component/>
     </v-toolbar>
   </div>
 </template>

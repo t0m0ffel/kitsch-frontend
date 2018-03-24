@@ -82,8 +82,12 @@ export default {
     async login () {
       try {
         await Authentication.login(this.email, this.password, '/secured')
-      } catch ({response}) {
-        console.log(response.data)
+        console.log('ok')
+        this.loginDialog = false
+      } catch (data) {
+        console.log(data)
+        const {response} = data;
+        console.log(response)
         console.log(response.data.msg)
         this.error = response.data.msg
       }
