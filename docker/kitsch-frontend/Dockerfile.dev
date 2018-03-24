@@ -10,4 +10,4 @@ ADD ./bootstrap.sh /usr/app/scripts/bootstrap.sh
 CMD sh /usr/app/scripts/bootstrap.sh && \
   npm run dev
 
-EXPOSE 8080
+EXPOSE 8081
