@@ -65,9 +65,9 @@
 </template>
 
 <script>
-import Authentication from '@/services/authentication'
+  import Authentication from '@/services/authentication'
 
-export default {
+  export default {
   name: 'login-component',
   data: () => ({
     loginDialog: false,
@@ -81,14 +81,9 @@ export default {
   methods: {
     async login () {
       try {
-        await Authentication.login(this.email, this.password, '/secured')
-        console.log('ok')
+        await Authentication.login(this.email, this.password, '/recipes')
         this.loginDialog = false
-      } catch (data) {
-        console.log(data)
-        const {response} = data;
-        console.log(response)
-        console.log(response.data.msg)
+      } catch ({response}) {
         this.error = response.data.msg
       }
     }

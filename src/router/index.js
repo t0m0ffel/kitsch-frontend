@@ -5,6 +5,7 @@ import LoginComponent from '@/components/LoginComponent'
 import Secured from '@/components/SecuredComponent'
 import auth from '@/services/authentication'
 import DefaultHeaderComponent from '@/components/DefaultHeaderComponent'
+import RecipeComponent from '@/components/RecipeComponent'
 
 Vue.use(Router)
 
@@ -20,6 +21,13 @@ const router = new Router({
       path: '/secured',
       name: 'secured',
       components: {default: Secured, headerContent: DefaultHeaderComponent},
+      meta: {requiresAuth: true}
+    },
+
+    {
+      path: '/recipes',
+      name: 'recipes',
+      components: {default: RecipeComponent, headerContent: DefaultHeaderComponent},
       meta: {requiresAuth: true}
     }
   ]

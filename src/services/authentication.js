@@ -6,15 +6,8 @@ export default {
   authenticated: false,
 
   async login (username, password, redirect) {
-    try {
-      const {data, error} = await Rest.login({username, password})
-      console.log(data, error)
-      console.log(data)
-      localStorage.setItem('user', JSON.stringify(data))
-    } catch ({response}) {
-      console.log(response.data)
-      return response.data.msg
-    }
+    const {data} = await Rest.login({username, password})
+    localStorage.setItem('user', JSON.stringify(data))
     if (redirect) { Router.push(redirect) }
   },
 
